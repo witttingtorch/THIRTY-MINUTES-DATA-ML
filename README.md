@@ -13,6 +13,7 @@ Holiday:Holiday/no Holiday
 Functional Day: no Func(Non Functional Hours),Fun(Functional Hours)
 y-rented Bike Count (Target),Count of Bikes rented at each hour
  
+ 
 
  GITHUB CONTROLS FROM VS CODE 
  1.Under settings  navigate to the search bar 
