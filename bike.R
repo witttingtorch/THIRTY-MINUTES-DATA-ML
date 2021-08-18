@@ -1,3 +1,5 @@
+```{r}
+#LIBRARIES 
 library(magrittr)
 library(readr)
 library(dplyr)
@@ -5,16 +7,29 @@ library(sjmisc)
 library (tidyverse)
 library(lubridate)
 library(ggplot2)
+```
+```{r}
+#LOADING DATA AND DESCRIPTIVES
 bike<- readr::read_csv("train.csv")
+````
+```{r}
+#Displaying the structure of the data
 str(bike)
+```
+```{r}
+#Descriptives statistics
 duplicates<-duplicated(bike)#looking for duplicates in the dataset
 table(duplicates)
 bike%>%sjmisc::descr()->desr_stats
 readr::write_csv(desr_stats,"descriptive.csv")
+```
+```{r}
 #Exploring Categorical variables
 dplyr::count(bike,dplyr::n_distinct("bike$seasons"))
 bike_category <-bike[,sapply(bike,class)=='character']
 bike_category%>%dplyr::summarise_all(dplyr::funs(dplyr::n_distinct(.)))
+```
+```{r}
 #VISUALIZING THE DATA 
 #with grid
 bike%>%ggplot(aes(x=y,y=Seasons))+geom_jitter(size=.5,alpha=.5,color="purple")+labs(title = "Relationship of seasons with bike counts" ,x="BIKE COUNT",y="SEASONS")#with a gridbike%>%ggplot(aes(x=y,y=Seasons))+geom_jitter(size=.5,alpha=.5,color="purple")+labs(title = "Relationship of seasons with bike counts" ,x="BIKE COUNT",y="SEASONS")+theme(panel.grid = element_blank())
@@ -22,4 +37,7 @@ bike%>%ggplot(aes(x=y,y=Seasons))+geom_jitter(size=.5,alpha=.5,color="purple")+l
 bike%>%ggplot(aes(x=y,y=Seasons))+geom_jitter(size=.5,alpha=.5,color="purple")+labs(title = "Relationship of seasons with bike counts" ,x="BIKE COUNT",y="SEASONS")+theme(panel.grid = element_blank())
 #HOLIDAY
 bike%>%ggplot(aes(x=y,y=Holiday))+geom_jitter(size=.5,alpha=.5,color="purple")+labs(title = "Relationship of seasons with bike counts" ,x="BIKE COUNT",y="HOLIDAY")+theme(panel.grid = element_blank())
+
+```
+
 
